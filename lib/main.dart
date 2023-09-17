@@ -16,7 +16,6 @@ class ShoppingList extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.shopping_cart),
               onPressed: () {
-                // Add your cart action here
               },
             ),
           ],
