@@ -1,47 +1,51 @@
 import 'package:flutter/material.dart';
-void main ()
-{
-  runApp(Myapp());
+
+void main() {
+  runApp(ShoppingList());
 }
-class Myapp extends StatelessWidget
-{
+
+class ShoppingList extends StatelessWidget {
   @override
-  Widget build(BuildContext context)
-  {
-    return  MaterialApp(
-      debugShowCheckedModeBanner:true,
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.blue,
-          centerTitle: true,
-          title:  Text("Profile",style: TextStyle(
-          ),),
+          title: Center(child: Text("My Shopping List.")),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                // Add your cart action here
+              },
+            ),
+          ],
         ),
-        body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center, // edit with main axis
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.account_circle_rounded,
-                  size: 50,
-                  color: Colors.green,
-                ),
-                Text("Jhon Doe",style: TextStyle(
-                    color: Colors.green,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 20
-                ),),
-                Text("Flutter Batch 4",style: TextStyle(
-                  color: Colors.cyan,
-                  fontSize: 15,
-                  fontWeight: FontWeight.normal
-                ),),
-              ],
-            )),
+        body: ListView(
+          children: [
+            ListTile(
+              leading: Icon(Icons.apple),
+              title: Text("Apple"),
+            ),
+            ListTile(
+              leading: Icon(Icons.shopping_basket),
+              title: Text("Banana"),
+            ),
+            ListTile(
+              leading: Icon(Icons.local_grocery_store),
+              title: Text("Bread"),
+            ),
+            ListTile(
+              leading: Icon(Icons.local_drink_outlined),
+              title: Text("milk"),
+            ),
+            ListTile(
+              leading: Icon(Icons.egg),
+              title: Text("Egg"),
+            ),
+          ],
+        ),
       ),
-      // title: "Valley",
     );
   }
 }
