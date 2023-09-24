@@ -1,46 +1,97 @@
 import 'package:flutter/material.dart';
-
 void main() {
-  runApp(ShoppingList());
+  runApp(MyApp());
 }
-
-class ShoppingList extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Center(child: Text("My Shopping List.")),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.shopping_cart),
+      title: 'Counter App',
+      home: CounterScreen(),
+    );
+  }
+}
+
+class CounterScreen extends StatefulWidget {
+  @override
+  CounterScreenState createState() => CounterScreenState();
+}
+
+class CounterScreenState extends State<CounterScreen>
+{
+  int count = 0;
+  void incount() {
+    setState(() {
+      count++;
+      if (count == 5)
+      {
+        Dialogshow();
+      }
+    });
+  }
+
+  void decount() {
+    setState(() {
+      if (count > 0) {
+        count--;
+      }
+    });
+  }
+
+  void Dialogshow() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Button Pressed $count times'),
+          actions:
+          [
+            TextButton(
               onPressed: () {
+                Navigator.of(context).pop();
               },
+              child: Text('Close'),
             ),
           ],
-        ),
-        body: ListView(
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Counter App'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ListTile(
-              leading: Icon(Icons.apple),
-              title: Text("Apple"),
+            Text(
+              'Count:',
+              style: TextStyle(fontSize: 24),
             ),
-            ListTile(
-              leading: Icon(Icons.shopping_basket),
-              title: Text("Banana"),
+            SizedBox(height: 10),
+            Text(
+              '$count',
+              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
             ),
-            ListTile(
-              leading: Icon(Icons.local_grocery_store),
-              title: Text("Bread"),
+            SizedBox(height: 20),
+            Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:
+            [
+            ElevatedButton(
+            onPressed: incount,
+            child: Text('+',style: TextStyle(fontSize: 30),),
             ),
-            ListTile(
-              leading: Icon(Icons.local_drink_outlined),
-              title: Text("milk"),
+            SizedBox(width: 10),
+            ElevatedButton(
+            onPressed: decount,
+            child: Text('-',style: TextStyle(fontSize: 30),),
             ),
-            ListTile(
-              leading: Icon(Icons.egg),
-              title: Text("Egg"),
+            ],
             ),
           ],
         ),
