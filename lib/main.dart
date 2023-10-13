@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//not completed
+
 void main() {
   runApp(MyApp());
 }
@@ -8,40 +8,50 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
+      home: MyScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyScreen extends StatefulWidget {
   @override
-  _MyHomePage createState() => _MyHomePage();
+  _MyScreenState createState() => _MyScreenState();
 }
 
-class _MyHomePage extends State<MyHomePage> {
-  Color _selectedColor = Colors.blue;
-  String _selectedSize = 'Small';
+class _MyScreenState extends State<MyScreen> {
+  List<String> items = [
+    "Item 1",
+    "Item 2",
+    "Item 3",
+    "Item 4",
+    "Item 5",
+  ];
+  List<bool> selectedItems = List.filled(5, false);
 
-  void _changeColorAndShowSnackbar(Color newColor, String newSize) {
+  void toggleSelection(int index) {
     setState(() {
-      _selectedColor = newColor;
-      _selectedSize = newSize;
+      selectedItems[index] = !selectedItems[index];
     });
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Selected Size: $_selectedSize'),
-      ),
-    );
   }
 
-  Widget _buildColorButton(Color color, String size) {
-    return ElevatedButton(
-      onPressed: () {
-        _changeColorAndShowSnackbar(color, size);
+  void _showSelectedItemsDialog() {
+    int count = selectedItems.where((selected) => selected).length;
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Selected Items"),
+          content: Text("You have selected $count item(s)."),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Close"),
+            ),
+          ],
+        );
       },
-      style: ElevatedButton.styleFrom(primary: color),
-      child: Text(size),
     );
   }
 
@@ -49,53 +59,25 @@ class _MyHomePage extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Size Selector'),
-        centerTitle: true,
+        title: Text("Selectable List"),
       ),
-      body: Center(
-        child: Wrap(
-
-          runSpacing: 8,
-          spacing: 8,
-
-          children: [
-            Container(
-              width: 100,
-              height: 40,
-              child: _buildColorButton(Colors.orange, 'S'),
-            ),
-
-            Container(
-              height: 40,
-              width: 100,
-              child: _buildColorButton(Colors.grey, 'M'),
-            ),
-
-            Container(
-              height: 40,
-              width: 100,
-              child: _buildColorButton(Colors.grey, 'L'),
-            ),
-
-            Container(
-              height: 40,
-              width: 100,
-              child: _buildColorButton(Colors.grey, 'XL'),
-            ),
-
-            Container(
-              height: 40,
-              width: 100,
-              child: _buildColorButton(Colors.grey, 'XXL'),
-            ),
-
-            Container(
-              height: 40,
-              width: 100,
-              child: _buildColorButton(Colors.grey, 'XXXL'),
-            ),
-          ],
-        ),
+      body: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(items[index]),
+            tileColor: selectedItems[index] ? Colors.blue : null,
+            onTap: () {
+              toggleSelection(index);
+            },
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _showSelectedItemsDialog();
+        },
+        child: Icon(Icons.check),
       ),
     );
   }
