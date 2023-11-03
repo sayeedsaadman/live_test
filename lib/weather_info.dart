@@ -9,9 +9,7 @@ class WeatherInfoMainScreen extends StatefulWidget {
 }
 
 class _WeatherInfoMainScreenState extends State<WeatherInfoMainScreen> {
-
   List<Map<String, dynamic>> weatherData = [
-
     {
       "city": "New York",
       "temperature": 20,
@@ -59,7 +57,7 @@ class _WeatherInfoMainScreenState extends State<WeatherInfoMainScreen> {
           Expanded(
             child: ListView.builder(
                 itemCount: weatherData.length,
-                itemBuilder: (context,index){
+                itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: Card(
@@ -70,18 +68,30 @@ class _WeatherInfoMainScreenState extends State<WeatherInfoMainScreen> {
                           children: <Widget>[
                             Text(
                               "City: ${weatherData[index]['city']}",
-                              style: TextStyle(fontSize: 24,fontWeight: FontWeight.w500),
+                              style: TextStyle(
+                                  fontSize: 24, fontWeight: FontWeight.w500),
                             ),
-                            Text("Temperature: ${weatherData[index]["temperature"]}°C",style: TextStyle(fontSize: 21,color: Colors.grey.shade600),),
-                            Text("Condition: ${weatherData[index]["condition"]}",style: TextStyle(fontSize: 21,color: Colors.grey.shade600)),
-                            Text("Humidity: ${weatherData[index]["humidity"]}%",style: TextStyle(fontSize: 21,color: Colors.grey.shade600)),
-                            Text("Wind Speed: ${weatherData[index]["windSpeed"]} m/s",style: TextStyle(fontSize: 21,color: Colors.grey.shade600)),
+                            Text(
+                              "Temperature: ${weatherData[index]["temperature"]}°C",
+                              style: TextStyle(
+                                  fontSize: 21, color: Colors.grey.shade600),
+                            ),
+                            Text(
+                                "Condition: ${weatherData[index]["condition"]}",
+                                style: TextStyle(
+                                    fontSize: 21, color: Colors.grey.shade600)),
+                            Text("Humidity: ${weatherData[index]["humidity"]}%",
+                                style: TextStyle(
+                                    fontSize: 21, color: Colors.grey.shade600)),
+                            Text(
+                                "Wind Speed: ${weatherData[index]["windSpeed"]} m/s",
+                                style: TextStyle(
+                                    fontSize: 21, color: Colors.grey.shade600)),
                           ],
                         ),
                       ),
                     ),
                   );
-
                 }),
           )
         ],
