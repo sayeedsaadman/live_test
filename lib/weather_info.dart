@@ -50,16 +50,16 @@ class _WeatherInfoMainScreenState extends State<WeatherInfoMainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Weather Info App"),
+        title: Center(child: Text("Weather Info App")),
       ),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
-                itemCount: weatherData.length,
+              itemCount: 5,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(3.0),
+                    padding: const EdgeInsets.all(3),
                     child: Card(
                       child: Padding(
                         padding: const EdgeInsets.all(8),
@@ -69,25 +69,25 @@ class _WeatherInfoMainScreenState extends State<WeatherInfoMainScreen> {
                             Text(
                               "City: ${weatherData[index]['city']}",
                               style: TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.w500),
+                                  fontSize: 25, fontWeight: FontWeight.w500),
                             ),
                             Text(
                               "Temperature: ${weatherData[index]["temperature"]}°C",
                               style: TextStyle(
-                                  fontSize: 21),
+                                  fontSize: 20),
                             ),
                             Text(
                                 "Condition: ${weatherData[index]["condition"]}",
                                 style: TextStyle(
-                                    fontSize: 21)
+                                    fontSize: 20)
                             ),
                             Text("Humidity: ${weatherData[index]["humidity"]}%",
                                 style: TextStyle(
-                                    fontSize: 21)),
+                                    fontSize: 20)),
                             Text(
                                 "Wind Speed: ${weatherData[index]["windSpeed"]} m/s",
                                 style: TextStyle(
-                                    fontSize: 21)),
+                                    fontSize: 20)),
                           ],
                         ),
                       ),
