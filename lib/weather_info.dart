@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class WeatherInfoMainScreen extends StatefulWidget {
-  const WeatherInfoMainScreen({super.key});
+class WeatherMainScreen extends StatefulWidget {
+  const WeatherMainScreen({super.key});
 
   @override
-  State<WeatherInfoMainScreen> createState() => _WeatherInfoMainScreenState();
+  State<WeatherMainScreen> createState() => _WeatherMainScreenState();
 }
 
-class _WeatherInfoMainScreenState extends State<WeatherInfoMainScreen> {
-  List<Map<String, dynamic>> weatherData = [
+class _WeatherMainScreenState extends State<WeatherMainScreen> {
+
+  List<Map<String , dynamic>> weatherData = [
     {
       "city": "New York",
       "temperature": 20,
@@ -50,50 +51,59 @@ class _WeatherInfoMainScreenState extends State<WeatherInfoMainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("Weather Info App")),
+        title: Text('Weather Info App'),
       ),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(3),
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "City: ${weatherData[index]['city']}",
-                              style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.w500),
-                            ),
-                            Text(
-                              "Temperature: ${weatherData[index]["temperature"]}°C",
-                              style: TextStyle(
-                                  fontSize: 20),
-                            ),
-                            Text(
-                                "Condition: ${weatherData[index]["condition"]}",
-                                style: TextStyle(
-                                    fontSize: 20)
-                            ),
-                            Text("Humidity: ${weatherData[index]["humidity"]}%",
-                                style: TextStyle(
-                                    fontSize: 20)),
-                            Text(
-                                "Wind Speed: ${weatherData[index]["windSpeed"]} m/s",
-                                style: TextStyle(
-                                    fontSize: 20)),
-                          ],
+              itemCount: weatherData.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: Card(
+                    child: ListTile(
+                      title: Text(
+                        "City: ${weatherData[index]['city']}",
+                        style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Temperature: ${weatherData[index]["temperature"]}°C",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            "Condition: ${weatherData[index]["condition"]}",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            "Humidity: ${weatherData[index]["humidity"]}%",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            "Wind Speed: ${weatherData[index]["windSpeed"]} m/s",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  );
-                }),
+                  ),
+                );
+              },
+            ),
           )
         ],
       ),
