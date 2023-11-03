@@ -65,7 +65,7 @@ class _WeatherInfoMainScreenState extends State<WeatherInfoMainScreen> {
                         padding: const EdgeInsets.all(8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
+                          children: [
                             Text(
                               "City: ${weatherData[index]['city']}",
                               style: TextStyle(
