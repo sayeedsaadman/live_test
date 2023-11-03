@@ -74,19 +74,20 @@ class _WeatherInfoMainScreenState extends State<WeatherInfoMainScreen> {
                             Text(
                               "Temperature: ${weatherData[index]["temperature"]}°C",
                               style: TextStyle(
-                                  fontSize: 21, color: Colors.grey.shade600),
+                                  fontSize: 21),
                             ),
                             Text(
                                 "Condition: ${weatherData[index]["condition"]}",
                                 style: TextStyle(
-                                    fontSize: 21, color: Colors.grey.shade600)),
+                                    fontSize: 21)
+                            ),
                             Text("Humidity: ${weatherData[index]["humidity"]}%",
                                 style: TextStyle(
-                                    fontSize: 21, color: Colors.grey.shade600)),
+                                    fontSize: 21)),
                             Text(
                                 "Wind Speed: ${weatherData[index]["windSpeed"]} m/s",
                                 style: TextStyle(
-                                    fontSize: 21, color: Colors.grey.shade600)),
+                                    fontSize: 21)),
                           ],
                         ),
                       ),
